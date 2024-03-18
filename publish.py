@@ -9,12 +9,12 @@ import random
 
 # Define ENDPOINT, CLIENT_ID, PATH_TO_CERTIFICATE, PATH_TO_PRIVATE_KEY, PATH_TO_AMAZON_ROOT_CA_1, MESSAGE, TOPIC, and RANGE
 ENDPOINT = "a3tz9qyn5ip33g-ats.iot.us-east-1.amazonaws.com"
-CLIENT_ID = "testDevice"
-PATH_TO_CERTIFICATE = "certificates/b7d9fe24c1d7b18f8001a28a16cf83852c4c83960c8899255c638963adb93efa-certificate.pem.crt"
-PATH_TO_PRIVATE_KEY = "certificates/b7d9fe24c1d7b18f8001a28a16cf83852c4c83960c8899255c638963adb93efa-private.pem.key"
+CLIENT_ID = "binsDevice"
+PATH_TO_CERTIFICATE = "certificates/ec71681cbc6d795c88583e4f1a5d10c48d47b56825e519c8c84139ad32b205e4-certificate.pem.crt"
+PATH_TO_PRIVATE_KEY = "certificates/ec71681cbc6d795c88583e4f1a5d10c48d47b56825e519c8c84139ad32b205e4-private.pem.key"
 PATH_TO_AMAZON_ROOT_CA_1 = "certificates/root.pem"
 MESSAGE = "Hello World"
-TOPIC = "test/testing"
+TOPIC = "area-1/garbage-bins-monitoring"
 RANGE = 20
 
 def generate_data():
