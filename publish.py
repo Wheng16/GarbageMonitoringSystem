@@ -70,7 +70,6 @@ def generate_and_transfer_data():
         print(f"Sensor data for {location['name']}:")
         print(json.dumps(sensor_data, indent=2))
         print()
-    # mqtt_connection.publish(topic=TOPIC+, payload=json.dumps(area_sensor_data), qos=mqtt.QoS.AT_LEAST_ONCE)
 
 # Spin up resources
 event_loop_group = io.EventLoopGroup(1)
