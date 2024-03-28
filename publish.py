@@ -15,7 +15,7 @@ CLIENT_ID = "binsDevice"
 PATH_TO_CERTIFICATE = "certificates/ec71681cbc6d795c88583e4f1a5d10c48d47b56825e519c8c84139ad32b205e4-certificate.pem.crt"
 PATH_TO_PRIVATE_KEY = "certificates/ec71681cbc6d795c88583e4f1a5d10c48d47b56825e519c8c84139ad32b205e4-private.pem.key"
 PATH_TO_AMAZON_ROOT_CA_1 = "certificates/root.pem"
-TOPIC = "area-1/garbage-bins-monitoring"
+TOPIC = "area-1/garbage-bins-monitoring/"
 
 # List of bin IDs, location names and coordinates
 locations = [
@@ -64,14 +64,13 @@ def generate_sensor_data(location):
     return data
 
 def generate_and_transfer_data():
-    area_sensor_data = []
     for location in locations:
         sensor_data = generate_sensor_data(location)
-        area_sensor_data.append(sensor_data ) 
+        mqtt_connection.publish(topic=TOPIC+str(sensor_data['binId']), payload=json.dumps(sensor_data), qos=mqtt.QoS.AT_LEAST_ONCE)
         print(f"Sensor data for {location['name']}:")
         print(json.dumps(sensor_data, indent=2))
         print()
-    mqtt_connection.publish(topic=TOPIC, payload=json.dumps(area_sensor_data), qos=mqtt.QoS.AT_LEAST_ONCE)
+    # mqtt_connection.publish(topic=TOPIC+, payload=json.dumps(area_sensor_data), qos=mqtt.QoS.AT_LEAST_ONCE)
 
 # Spin up resources
 event_loop_group = io.EventLoopGroup(1)
