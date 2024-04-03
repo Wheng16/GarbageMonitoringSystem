@@ -64,8 +64,12 @@ def generate_sensor_data(location):
     return data
 
 def generate_and_transfer_data():
-    for location in locations:
+    num_locations = len(locations)
+    for i, location in enumerate(locations):
         sensor_data = generate_sensor_data(location)
+        if(i == num_locations - 1):
+            t.sleep(5)
+        
         mqtt_connection.publish(topic=TOPIC+str(datetime.now().date())+"/"+str(sensor_data['binId']), payload=json.dumps(sensor_data), qos=mqtt.QoS.AT_LEAST_ONCE)
         print(f"Sensor data for {location['name']}:")
         print(TOPIC+str(datetime.now().date())+"/"+str(sensor_data['binId']))
@@ -105,3 +109,5 @@ generate_and_transfer_data()
 print('Publish End')
 disconnect_future = mqtt_connection.disconnect()
 disconnect_future.result()
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: MIT-0
