@@ -66,8 +66,9 @@ def generate_sensor_data(location):
 def generate_and_transfer_data():
     for location in locations:
         sensor_data = generate_sensor_data(location)
-        mqtt_connection.publish(topic=TOPIC+str(sensor_data['binId']), payload=json.dumps(sensor_data), qos=mqtt.QoS.AT_LEAST_ONCE)
+        mqtt_connection.publish(topic=TOPIC+str(datetime.now().date())+"/"+str(sensor_data['binId']), payload=json.dumps(sensor_data), qos=mqtt.QoS.AT_LEAST_ONCE)
         print(f"Sensor data for {location['name']}:")
+        print(TOPIC+str(datetime.now().date())+"/"+str(sensor_data['binId']))
         print(json.dumps(sensor_data, indent=2))
         print()
 
